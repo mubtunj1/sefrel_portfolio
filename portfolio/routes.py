@@ -30,6 +30,10 @@ Message: %s
     
     return render_template('index.html', form=form)
 
+@app.route("/portfolio")
+def portfolio():
+    pass
+
 
 
     
