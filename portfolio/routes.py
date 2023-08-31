@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from portfolio.form import ContactForm
 from portfolio import app, mail, csrf
-from flask_mail import Message
+from flask_mail import Mail, Message
 
 
 
@@ -22,8 +22,9 @@ Subject: %s
 Message: %s 
                 """ % (form.name.data, form.email.data, form.subject.data, form.message.data)
                 # Create a separate connection context to send the email
-                
+                mail.connect() 
                 mail.send(msg)
+                
                 
                 flash('Message sent', 'success')
                 return redirect(url_for('home'))
