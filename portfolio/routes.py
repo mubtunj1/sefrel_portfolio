@@ -13,7 +13,7 @@ def home():
     
     if request.method == 'POST':
         if form.validate_on_submit():
-            # try:
+            try:
                 msg = Message(form.subject.data, sender='developer@sefrel.com', recipients=['developer@sefrel.com'])
                 msg.body = """ 
 From: %s 
@@ -21,16 +21,15 @@ Email: <%s>
 Subject: %s 
 Message: %s 
                 """ % (form.name.data, form.email.data, form.subject.data, form.message.data)
-                # Create a separate connection context to send the email
-                mail.connect() 
+                # Create a separate connection context to send the email 
                 mail.send(msg)
                 
                 
                 flash('Message sent', 'success')
                 return redirect(url_for('home'))
-            # except Exception as e:
-            #     flash('An error occurred while sending the email. Please try again later.', 'danger')
-            #     print(e)
+            except Exception as e:
+                flash('An error occurred while sending the email. Please try again later.', 'danger')
+                print(e)
     
     return render_template('index.html', form=form)
 
