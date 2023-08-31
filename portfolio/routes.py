@@ -22,8 +22,8 @@ Subject: %s
 Message: %s 
                 """ % (form.name.data, form.email.data, form.subject.data, form.message.data)
                 # Create a separate connection context to send the email
-                with app.app_context():
-                    mail.send(msg)
+                
+                mail.send(msg)
                 
                 flash('Message sent', 'success')
                 return redirect(url_for('home'))
